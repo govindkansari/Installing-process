@@ -1,0 +1,6 @@
+sudo apt update -y
+sudo apt install openjdk-11-jre
+# java --version
+
+Go to manage Jenkins --> Global Security --> Agents TCP port for inbound agents --> Select 'Random'
+
