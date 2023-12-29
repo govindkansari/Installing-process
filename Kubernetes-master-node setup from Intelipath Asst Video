@@ -1,1 +1,31 @@
 
+    1  sudo apt update -y
+    2  sudo apt install docker.io
+    3  docker --version
+    4  sudo nano a.sh
+sudo apt update
+sudo apt upgrade -y
+sudo apt install -y curl apt-transport-https ca-certificates software-properties-common
+curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+sudo add-apt-repository "deb http://apt.kubernetes.io/ kubernetes-xenial main"
+sudo swapoff -a
+sudo apt update
+sudo apt install -y kubelet kubeadm kubectl
+    5  bash a.sh
+    6  kubectl version
+    7  which kubectl
+    8  sudo kubeadm init
+
+Copy and run the below commands in master
+    9  mkdir -p $HOME/.kube
+   10  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+   11  sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+   12  kubectl apply -f https://github.com/weaveworks/weave/releases/download/v2.8.1/weave-daemonset-k8s.yaml
+
+Need to run the token to all nodes that will get from kubeadm init command 
+
+sudo kubeadm join 172.31.49.75:6443 --token azpalt.djtwu577in23mw8c \
+>         --discovery-token-ca-cert-hash sha256:5c20e57d3e38aaf08243c797995c6742719dd9402323ef373fff2e7c0a05084c
+
+   13  kubectl get nodes
